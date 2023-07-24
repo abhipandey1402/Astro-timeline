@@ -1,0 +1,178 @@
+.container{
+    height: 85vh;
+    overflow-y: scroll;
+    width: 75%;
+    margin: 0 auto;
+}
+
+.container::-webkit-scrollbar {
+    width: 0; 
+  }
+
+
+  .prediction{
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    justify-content: center;
+    background-color: rgb(246,209,85);
+    height: 225px;
+    border-radius: 5rem;
+    padding: 2rem;
+    text-align: center;
+    margin-bottom: 10px !important;
+    font-family: 'Titillium Web', sans-serif !important;
+
+  }
+
+  .date{
+    font-size: 1.2rem;
+  }
+
+  .heading{
+    font-size: 1.2rem;
+    font-weight: bold;
+  }
+
+  .text{
+    font-size: 1rem;
+  }
+
+  p{
+    margin: 0;
+    padding: 0;
+  }
+
+  .connect{
+    position: absolute !important;
+    width: 0.3rem !important;
+    top: calc(50% + 8px) !important; 
+     left: 49.75% !important;
+    height: calc(100% - -100px) !important; 
+    z-index: -1 !important;
+  }
+
+  .MuiTimelineDot-root {
+      width: 1.2rem;
+      height: 1.2rem;
+      background-color: white !important;
+      border: 0.4rem solid red !important;
+  }
+
+  .MuiTimelineOppositeContent-root {
+    font-weight: 700 !important; 
+  }
+  
+  .MuiTimelineContent-root{
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  
+
+  @media only screen and (max-width: 1000px) {
+
+
+    .connect{
+      width: 0.2rem !important;
+    }
+    
+   .container{
+    width: 85%;
+   }
+
+    .prediction{
+      height: 225px;
+      gap: 0.2rem;
+      border-radius: 1.2rem;
+      margin-bottom: 2px !important;
+      padding: 0.8rem;
+    }
+
+    .date{
+      font-size: 1rem;
+    }
+  
+    .heading{
+      font-size: 1rem;
+    }
+  
+    .text{
+      font-size: 0.8rem;
+    }
+
+    .MuiTimelineDot-root {
+      width: 1rem;
+      height: 1rem;
+      border-width: 0.3rem;
+    }
+
+   
+   
+  }
+
+  @media only screen and (max-width: 700px) {
+   
+
+    .connect{
+      width: 0.15 !important;
+    }
+
+    .MuiTimelineDot-root {
+      width: 0.85rem;
+      height: 0.85rem;
+      border-width: 0.25rem !important;
+    }
+
+    .container{
+      width: 100% !important;
+  }
+
+    .prediction{
+      gap: 0rem;
+      height: 180px;
+      border-radius: 0.8rem;
+      margin-bottom: 2px !important;
+      padding: 0.5rem;
+    }
+
+    .date{
+      font-size: 0.7rem;
+    }
+  
+    .heading{
+      font-size: 0.7rem;
+    }
+  
+    .text{
+      font-size: 0.6rem;
+    }
+   
+  }
+
+  @media only screen and (max-width: 440px) {
+   .prediction{
+    height: 280px;
+   }
+
+   .date{
+    font-size: 0.7rem;
+  }
+
+  .heading{
+    font-size: 0.7rem;
+  }
+
+  .text{
+    font-size: 0.6rem;
+  }
+ 
+  .MuiTimelineDot-root {
+    width: 0.7rem;
+    height: 0.7rem;
+    border-width: 0.2rem !important;
+  }
+
+  }
+
+
+  

@@ -1,0 +1,46 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&family=Titillium+Web&display=swap');
+
+
+body{
+  background-color: white;
+  /* font-family: 'Inter', sans-serif; */
+  font-family: 'Titillium Web', sans-serif;
+   
+}
+
+::-webkit-scrollbar{
+  display: none;
+}
+
+
+
+html{
+  scroll-behavior: smooth;
+}
+
+.side{
+  position: fixed;
+  box-sizing: border-box;
+  cursor: pointer;
+  left: 0;
+  background-color: yellow;
+  color: black;
+  width: 16%;
+  padding: 0.3rem 1.5rem;
+  border-top-right-radius: 1.2rem;
+  border-bottom-right-radius: 1.2rem;
+  z-index: 1000;
+}
+
+.appoint{
+  top: 30%;
+}
+
+.help{
+  top: 37%;
+}
+
+
+
