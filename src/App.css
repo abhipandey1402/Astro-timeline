@@ -42,5 +42,8 @@ html{
   top: 37%;
 }
 
+.app {
+  max-width: 100%;
+}
 
 

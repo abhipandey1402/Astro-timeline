@@ -67,40 +67,44 @@ export default function AstroTimeLine() {
   };
 
   const filteredPredictions = predictions.filter((prediction) =>
-    prediction.title.toLowerCase().includes(searchInput.toLowerCase())
+    prediction.title.toLowerCase().includes(searchInput.toLowerCase().trim())
   );
 
   return (
     <div className="container">
       <Timeline position="alternate">
-        {filteredPredictions.map((prediction, i) => {
-          effect = !effect;
-          return (
-            <TimelineItem style={timelineItemStyle} key={i}>
-              {prediction.predicted_date && (
-                <TimelineOppositeContent color="text.secondary">
-                  {prediction.predicted_date}
-                </TimelineOppositeContent>
-              )}
+        {filteredPredictions.length == 0 && (
+          <h1 style={{ textAlign: "center" }}>No Prediction Found</h1>
+        )}
+        {filteredPredictions.length > 0 &&
+          filteredPredictions.map((prediction, i) => {
+            effect = !effect;
+            return (
+              <TimelineItem style={timelineItemStyle} key={i}>
+                {prediction.predicted_date && (
+                  <TimelineOppositeContent color="text.secondary">
+                    {prediction.predicted_date}
+                  </TimelineOppositeContent>
+                )}
 
-              <TimelineSeparator>
-                <TimelineDot />
-                <TimelineConnector color="primary" className="connect" />
-              </TimelineSeparator>
-              <TimelineContent
-                sx={{ m: "10 10" }}
-                component={motion.div}
-                whileInView={{ opacity: 1, x: 0 }}
-                initial={
-                  effect ? { opacity: 0, x: -100 } : { opacity: 0, x: 100 }
-                }
-                transition={{ duration: 1.5 }}
-              >
-                <PredictionContent prediction={prediction} />
-              </TimelineContent>
-            </TimelineItem>
-          );
-        })}
+                <TimelineSeparator>
+                  <TimelineDot />
+                  <TimelineConnector color="primary" className="connect" />
+                </TimelineSeparator>
+                <TimelineContent
+                  sx={{ m: "10 10" }}
+                  component={motion.div}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  initial={
+                    effect ? { opacity: 0, x: -100 } : { opacity: 0, x: 100 }
+                  }
+                  transition={{ duration: 1.5 }}
+                >
+                  <PredictionContent prediction={prediction} />
+                </TimelineContent>
+              </TimelineItem>
+            );
+          })}
       </Timeline>
     </div>
   );

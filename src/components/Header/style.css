@@ -5,9 +5,10 @@
 
 .navbar {
   height: 60px;
-  background-color: rgb(254, 254, 253);
+  background-color: #ffffff;
   display: flex;
   justify-content: space-between;
+  color: white;
 }
 
 .left {
@@ -43,6 +44,10 @@ li {
   color: white;
   font-size: 1.7rem;
   font-weight: 400;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
 
 .searchBox {
@@ -54,7 +59,7 @@ li {
 
 .name {
   width: 100%;
-  padding: 2.5rem;
+  padding: 0rem;
 }
 
 sup {
@@ -82,6 +87,7 @@ select {
 
 a {
   font-weight: bold;
+  color: white;
 }
 
 a:hover {
