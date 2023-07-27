@@ -12,6 +12,7 @@ import "./style.css";
 import { PredictionContent } from "./PredictionContent";
 import { getData } from "./data";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 const predictions = getData();
 console.log(
@@ -70,12 +71,17 @@ export default function AstroTimeLine() {
     prediction.title.toLowerCase().includes(searchInput.toLowerCase().trim())
   );
 
+  if (filteredPredictions == 0) {
+    toast.warning("No Prediction Found, Please search new keywords");
+  }
+
   return (
     <div className="container">
       <Timeline position="alternate">
         {filteredPredictions.length == 0 && (
           <h1 style={{ textAlign: "center" }}>No Prediction Found</h1>
         )}
+
         {filteredPredictions.length > 0 &&
           filteredPredictions.map((prediction, i) => {
             effect = !effect;

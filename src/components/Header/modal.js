@@ -1,117 +1,74 @@
-import React,{useState} from 'react';
-import Box from '@mui/material/Box';
-import Modal from '@mui/material/Modal';
+import React, { useRef } from "react";
+import Box from "@mui/material/Box";
+import Modal from "@mui/material/Modal";
+import emailjs from "@emailjs/browser";
+import { toast } from "react-toastify";
 
 const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
+  position: "absolute",
+  top: "50%",
+  left: "50%",
+  transform: "translate(-50%, -50%)",
   width: 400,
-  bgcolor: 'background.paper',
-  border: '2px solid #000',
+  bgcolor: "background.paper",
+  border: "2px solid #000",
   boxShadow: 24,
   p: 4,
 };
 
-export default function Contact({open, handleOpen, handleClose, children}) {
-    const [name, setName] = useState('');
-    const [email, setEmail] = useState('');
-    const [message, setMessage] = useState('');
-    const [submitted, setSubmitted] = useState(false);
-  
-    const handleSubmit = (e) => {
-      e.preventDefault();
-  
-      // Validate the form data (you can add more validation as per your requirements)
-      if (name.trim() === '' || email.trim() === '' || message.trim() === '') {
-        alert('Please fill in all the fields.');
-        return;
-      }
+export default function Contact({ open, handleOpen, handleClose, children }) {
+  const form = useRef();
 
-      const recipientEmail = 'dayush7777777@gmail.com'; // Replace with your own email address
 
-    // Create the email body
-    const emailBody = `Name: ${name}\n\nEmail: ${email}\n\nMessage:\n${message}`;
+  const sendEmail = (e) => {
+    e.preventDefault();
 
-    // Create the email payload
-    const payload = {
-      to: recipientEmail,
-      subject: 'New message from your website',
-      body: emailBody
-    };
-
-    fetch('/send-email', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json'
+    emailjs
+      .sendForm(
+        "service_25zoyfv",
+        "template_ij9h16n",
+        form.current,
+        "aDVEV4dG3i2Hb4XjC"
+      )
+      .then(
+        (result) => {
+          toast.success("Form Submitted, We'll get back to you soon");
+          handleClose();
+          console.log(result.text);
         },
-        body: JSON.stringify(payload)
-      })
-        .then(response => {
-          if (response.ok) {
-            setSubmitted(true);
-          } else {
-            throw new Error('Oops! Something went wrong. Please try again later.');
-          }
-        })
-        .catch(error => {
-          alert(error.message);
-        });
-
-    };
-
-    if (submitted) {
-      return (
-        <div>
-          <h1>Thank you for your message. We'll get back to you soon!</h1>
-        </div>
+        (error) => {
+          console.log(error.text);
+        }
       );
-    }
+  };
 
   return (
     <div>
-        {children}
+      {children}
       <Modal
         open={open}
         onClose={handleClose}
         aria-labelledby="modal-modal-title"
         aria-describedby="modal-modal-description"
       >
-        <div  className='contact-form'>
-      <h1>Contact Us</h1>
-      <div className='one'>
-        <label htmlFor="name">Name:</label>
-        <input
-          type="text"
-          id="name"
-          value={name}
-          onChange={e => setName(e.target.value)}
-          required
-        /><br />
-        <label htmlFor="email">Email:</label>
-        <input
-          type="email"
-          id="email"
-          value={email}
-          onChange={e => setEmail(e.target.value)}
-          required
-        /><br />
-        </div>
+        <form className="contact-form" ref={form} onSubmit={sendEmail}>
+          <h1>Contact Us</h1>
+          <div className="one">
+            <label htmlFor="name">Name:</label>
+            <input type="text" id="name" name="name" required />
+            <br />
+            <label htmlFor="email">Email:</label>
+            <input type="email" id="email" name="email" required />
+            <br />
+          </div>
 
-        <label htmlFor="message">Message:</label><br />
-        <textarea
-          id="message"
-          value={message}
-          onChange={e => setMessage(e.target.value)}
-          rows="5"
-          required
-        ></textarea><br />
+          <label htmlFor="message">Message:</label>
+          <br />
+          <textarea id="message" name="message" rows="5" required></textarea>
+          <br />
 
-<button type="submit" onClick={handleSubmit}>Submit</button>
-     
-    </div>
-        
+          <button type="submit">Submit</button>
+        </form>
       </Modal>
     </div>
   );
